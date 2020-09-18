@@ -1,45 +1,58 @@
+namespace SpriteKind {
+    export const humman = SpriteKind.create()
+}
+function create_sprites () {
+    student_F = [sprites.castle.heroWalkFront1, sprites.builtin.villager1WalkFront1, sprites.builtin.villager2WalkFront1, sprites.builtin.villager3WalkFront1, sprites.builtin.villager4WalkFront1]
+    student_B = [sprites.castle.heroWalkBack1, sprites.builtin.villager1WalkBack1, sprites.builtin.villager2WalkBack1, sprites.builtin.villager3WalkBack1, sprites.builtin.villager4WalkBack1]
+    car_F = [sprites.vehicle.carRedFront, sprites.vehicle.carBlueFront, sprites.vehicle.carPinkFront]
+    car_B = [sprites.vehicle.carRedBack, sprites.vehicle.carBlueBack, sprites.vehicle.carPinkBack]
+    goose = sprites.create(sprites.duck.duck6, SpriteKind.Player)
+    car_B = [sprites.vehicle.carRedBack, sprites.vehicle.carBlueBack, sprites.vehicle.carPinkBack]
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(img`
-        . . . . . . . . 
-        . . . . . . . . 
-        . . . . . . . . 
-        . . . . . . . . 
-        . . . 7 7 . . . 
-        . . . 7 7 . . . 
-        . . . 7 7 . . . 
-        . . . 7 7 . . . 
-        `, ship, 0, -140)
-    projectile.startEffect(effects.coolRadial, 100)
+	
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprite.destroy()
-    otherSprite.destroy(effects.disintegrate)
+sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherSprite) {
+    scene.cameraShake(2, 500)
+    otherSprite.destroy(effects.ashes)
+    sprite.startEffect(effects.hearts, 200)
     info.changeScoreBy(1)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    scene.cameraShake(4, 500)
-    otherSprite.destroy(effects.disintegrate)
-    sprite.startEffect(effects.fire, 200)
-    info.changeLifeBy(-1)
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, otherSprite) {
+    sprite.destroy()
+    otherSprite.destroy(effects.fire)
+    info.changeScoreBy(1)
 })
 let projectile: Sprite = null
-let ship: Sprite = null
-let asteroids = [
-sprites.space.spaceSmallAsteroid1,
-sprites.space.spaceSmallAsteroid0,
-sprites.space.spaceAsteroid0,
-sprites.space.spaceAsteroid1,
-sprites.space.spaceAsteroid4,
-sprites.space.spaceAsteroid3
-]
-ship = sprites.create(sprites.space.spaceRedShip, SpriteKind.Player)
-ship.setFlag(SpriteFlag.StayInScreen, true)
-ship.bottom = 120
-controller.moveSprite(ship, 100, 100)
+let car_B: Image[] = []
+let car_F: Image[] = []
+let student_B: Image[] = []
+let student_F: Image[] = []
+let goose: Sprite = null
+create_sprites()
+goose.bottom = 120
+controller.moveSprite(goose, 100, 100)
+info.setScore(0)
 info.setLife(3)
-effects.starField.startScreenEffect()
-game.onUpdateInterval(500, function () {
-    projectile = sprites.createProjectileFromSide(asteroids[randint(0, asteroids.length - 1)], 0, 75)
+tiles.setTilemap(tilemap`level_3`)
+scene.cameraFollowSprite(goose)
+game.onUpdateInterval(2000, function () {
+    projectile = sprites.createProjectileFromSide(student_B[randint(0, student_B.length - 1)], 0, -30)
+    projectile.setKind(SpriteKind.humman)
+    projectile.x = randint(216, 232)
+})
+game.onUpdateInterval(2000, function () {
+    projectile = sprites.createProjectileFromSide(student_F[randint(0, student_F.length - 1)], 0, 30)
+    projectile.setKind(SpriteKind.humman)
+    projectile.x = randint(24, 40)
+})
+game.onUpdateInterval(2000, function () {
+    projectile = sprites.createProjectileFromSide(car_F[randint(0, car_F.length - 1)], 0, 75)
     projectile.setKind(SpriteKind.Enemy)
-    projectile.x = randint(10, 150)
+    projectile.x = randint(55, 55)
+})
+game.onUpdateInterval(2000, function () {
+    projectile = sprites.createProjectileFromSide(car_B[randint(0, car_B.length - 1)], 0, -75)
+    projectile.setKind(SpriteKind.Enemy)
+    projectile.x = randint(199, 199)
 })

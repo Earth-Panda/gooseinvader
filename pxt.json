@@ -1,5 +1,5 @@
 {
-    "name": "Gooseinvader",
+    "name": "Attack_of_Mr.Goose",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -7,7 +7,9 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
     ],
     "testFiles": [
         "test.ts"
