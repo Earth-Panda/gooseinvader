@@ -37,14 +37,165 @@ function create_sprites () {
     water_animal = [sprites.builtin.angelFish1, sprites.builtin.clownFish2, sprites.builtin.hermitCrabAwaken5, sprites.builtin.shark1]
     land_animal = [sprites.builtin.cat1, sprites.builtin.forestBat0, sprites.builtin.forestMonkey0, sprites.builtin.forestSnake1]
 }
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function (sprite, otherSprite) {
+    otherSprite.destroy()
+})
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (honkscore >= 10) {
+        honk1 = sprites.createProjectileFromSprite(img`
+            1 1 1 1 1 . . . . . . . . . . . 
+            . . 1 1 1 1 1 . . . . . . . . . 
+            . . . . 1 1 1 1 1 . . . . . . . 
+            . . . . . . 1 1 1 1 1 . . . . . 
+            . . . . . . . . 1 1 1 1 . . . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . . . . 1 1 1 . . . 
+            . . . . . . . . . . . 1 1 1 . . 
+            . . . . . . . . . . . . 1 1 . . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . . 1 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . . 1 
+            `, goose, 100, -100)
+        honk2 = sprites.createProjectileFromSprite(img`
+            1 . . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . . 1 1 . . . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . . 1 1 . . . . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . . . 1 1 1 1 . . . . . . . . 
+            . . . . . 1 1 1 1 1 . . . . . . 
+            . . . . . . . 1 1 1 1 1 . . . . 
+            . . . . . . . . . 1 1 1 1 1 . . 
+            . . . . . . . . . . . . 1 1 1 1 
+            `, goose, -100, 100)
+        honk3 = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . 1 1 1 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . . 1 1 . . 
+            . . . . . . . . . . . 1 1 1 . . 
+            . . . . . . . . . . 1 1 1 . . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . . 1 1 1 1 . . . . 
+            . . . . . . 1 1 1 1 1 . . . . . 
+            . . . . 1 1 1 1 1 . . . . . . . 
+            . . 1 1 1 1 1 . . . . . . . . . 
+            1 1 1 1 1 . . . . . . . . . . . 
+            `, goose, 100, 100)
+        honk4 = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . 1 1 1 1 1 
+            . . . . . . . . . 1 1 1 1 1 . . 
+            . . . . . . . 1 1 1 1 1 . . . . 
+            . . . . . 1 1 1 1 1 . . . . . . 
+            . . . . 1 1 1 1 . . . . . . . . 
+            . . . 1 1 1 1 . . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . 1 1 . . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . . 
+            `, goose, -100, -100)
+        honk5 = sprites.createProjectileFromSprite(img`
+            . . . . . 1 1 1 . . . . . . . . 
+            . . . . 1 1 1 . . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . . . 1 1 1 . . . . . . . . . 
+            . . . . . 1 1 1 . . . . . . . . 
+            `, goose, -100, 0)
+        honk6 = sprites.createProjectileFromSprite(img`
+            . . . . . . . 1 1 1 . . . . . . 
+            . . . . . . . . . 1 1 1 . . . . 
+            . . . . . . . . . . 1 1 1 . . . 
+            . . . . . . . . . . . 1 1 1 . . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . 1 1 1 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . 1 1 1 . . 
+            . . . . . . . . . . 1 1 1 . . . 
+            . . . . . . . . . 1 1 1 . . . . 
+            . . . . . . . 1 1 1 . . . . . . 
+            `, goose, 100, 0)
+        honk7 = sprites.createProjectileFromSprite(img`
+            . . . . . . 1 1 1 1 . . . . . . 
+            . . . . 1 1 1 1 1 1 1 1 . . . . 
+            . . 1 1 1 1 . . . . 1 1 1 1 . . 
+            . . 1 1 . . . . . . . . 1 1 . . 
+            . 1 1 . . . . . . . . . . 1 1 . 
+            1 1 1 . . . . . . . . . . 1 1 1 
+            1 1 . . . . . . . . . . . . 1 1 
+            1 . . . . . . . . . . . . . . 1 
+            1 . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, goose, 0, -100)
+        honk8 = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . 1 
+            1 . . . . . . . . . . . . . . 1 
+            1 1 . . . . . . . . . . . . 1 1 
+            . 1 1 . . . . . . . . . . 1 1 . 
+            . 1 1 1 . . . . . . . . 1 1 1 . 
+            . . 1 1 1 1 . . . . 1 1 1 1 . . 
+            . . . . 1 1 1 1 1 1 1 1 1 . . . 
+            . . . . . . 1 1 1 1 . . . . . . 
+            `, goose, 0, 100)
+        honkscore = 0
+    } else {
+        scene.cameraShake(2, 100)
+    }
+})
 function spawn_Car_F () {
     projectile = sprites.createProjectileFromSide(car_F[randint(0, car_F.length - 1)], 0, 75)
     projectile.setKind(SpriteKind.Enemy)
     projectile.x = randint(55, 55)
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-	
-})
 function spawn_humman_B () {
     projectile = sprites.createProjectileFromSide(student_B[randint(0, student_B.length - 1)], 0, -30)
     projectile.setKind(SpriteKind.humman)
@@ -75,16 +226,32 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherS
     otherSprite.destroy(effects.ashes)
     sprite.startEffect(effects.hearts, 200)
     info.changeScoreBy(2)
+    honkscore += 1
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
     sprite.startEffect(effects.hearts, 200)
     info.changeScoreBy(1)
+    honkscore += 1
     animal_count += -1
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, otherSprite) {
+    otherSprite.destroy()
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
 })
 let roll = 0
 let animal_count = 0
 let still: Sprite = null
+let honk8: Sprite = null
+let honk7: Sprite = null
+let honk6: Sprite = null
+let honk5: Sprite = null
+let honk4: Sprite = null
+let honk3: Sprite = null
+let honk2: Sprite = null
+let honk1: Sprite = null
 let land_animal: Image[] = []
 let car_B: Image[] = []
 let car_F: Image[] = []
@@ -92,10 +259,12 @@ let student_B: Image[] = []
 let water_animal: Image[] = []
 let student_F: Image[] = []
 let projectile: Sprite = null
+let honkscore = 0
 let goose: Sprite = null
 create_sprites()
 goose.bottom = 120
 controller.moveSprite(goose, 100, 100)
+honkscore = 0
 info.setScore(0)
 info.setLife(3)
 tiles.setTilemap(tilemap`level_3`)
