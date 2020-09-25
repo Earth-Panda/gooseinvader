@@ -6,11 +6,6 @@ function spawn_human_F () {
     projectile.setKind(SpriteKind.humman)
     projectile.x = randint(24, 40)
 }
-function spawn_wateranimal () {
-    projectile = sprites.createProjectileFromSide(water_animal[randint(0, water_animal.length - 1)], 0, -75)
-    projectile.setKind(SpriteKind.Food)
-    projectile.x = randint(140, 140)
-}
 function create_sprites () {
     student_F = [sprites.castle.heroWalkFront1, sprites.builtin.villager1WalkFront1, sprites.builtin.villager2WalkFront1, sprites.builtin.villager3WalkFront1, sprites.builtin.villager4WalkFront1]
     student_B = [sprites.castle.heroWalkBack1, sprites.builtin.villager1WalkBack1, sprites.builtin.villager2WalkBack1, sprites.builtin.villager3WalkBack1, sprites.builtin.villager4WalkBack1]
@@ -34,7 +29,110 @@ function create_sprites () {
         . . . . . . 1 e e d . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Player)
-    water_animal = [sprites.builtin.angelFish1, sprites.builtin.clownFish2, sprites.builtin.hermitCrabAwaken5, sprites.builtin.shark1]
+    birds = [img`
+        . . . . . . . . d 1 . . . . . . 
+        . . . . . . . d 1 1 . . . . . . 
+        . . . . . . . d 1 1 . . . . . . 
+        . . . . . . d 1 1 1 . . . . . . 
+        . . . . . . d 1 1 1 . . . . . . 
+        . . . . . . d 1 1 1 . . . . . . 
+        d d . . 4 d 1 1 1 1 . 1 1 9 . . 
+        f 1 1 1 1 1 1 1 1 1 1 1 1 1 f f 
+        f 1 1 1 1 1 1 1 1 1 1 1 1 1 f f 
+        d d . . 4 d 1 1 1 1 . 1 1 9 . . 
+        . . . . . . d 1 1 1 . . . . . . 
+        . . . . . . d 1 1 1 . . . . . . 
+        . . . . . . d 1 1 1 . . . . . . 
+        . . . . . . . d 1 1 . . . . . . 
+        . . . . . . . d 1 1 . . . . . . 
+        . . . . . . . . d 1 . . . . . . 
+        `, img`
+        . . . . . . . . d 4 . . . . . . 
+        . . . . . . . d 4 4 . . . . . . 
+        . . . . . . . d 4 8 . . . . . . 
+        . . . . . . d 4 4 8 . . . . . . 
+        . . . . . . d e 8 8 . . . . . . 
+        . . . d d . e e 8 8 . . . . . . 
+        7 7 . . d d e 8 8 8 . 8 1 f . . 
+        5 7 7 5 7 7 e 8 8 8 8 8 8 8 5 5 
+        7 5 7 7 7 7 e 8 8 8 8 8 8 8 5 5 
+        5 7 . . d d e 8 8 8 . 8 1 f . . 
+        . . . d d . e e 8 8 . . . . . . 
+        . . . . . . d e 8 8 . . . . . . 
+        . . . . . . d 4 4 8 . . . . . . 
+        . . . . . . . d 4 8 . . . . . . 
+        . . . . . . . d 4 4 . . . . . . 
+        . . . . . . . . d 4 . . . . . . 
+        `, img`
+        . . . . . . . . c f . . . . . . 
+        . . . . . . . c f f . . . . . . 
+        . . . . . . . c f f . . . . . . 
+        . . . . . . c f f f . . . . . . 
+        . . . . . . c f f f . . . . . . 
+        . . . . . . c f f f . . . . . . 
+        c c . . 4 c f f f f . f f 2 . . 
+        f f f f f f f f f f f f f f f f 
+        f f f f f f f f f f f f f f f f 
+        c c . . 4 c f f f f . f f 2 . . 
+        . . . . . . c f f f . . . . . . 
+        . . . . . . c f f f . . . . . . 
+        . . . . . . c f f f . . . . . . 
+        . . . . . . . c f f . . . . . . 
+        . . . . . . . c f f . . . . . . 
+        . . . . . . . . c f . . . . . . 
+        `]
+    birds_B = [img`
+        . . . . . . 1 d . . . . . . . . 
+        . . . . . . 1 1 d . . . . . . . 
+        . . . . . . 1 1 d . . . . . . . 
+        . . . . . . 1 1 d 1 . . . . . . 
+        . . . . . . 1 1 1 d . . . . . . 
+        . . . . . . 1 1 1 d . . . . . . 
+        . . 9 1 1 . 1 1 1 1 1 4 . . 1 1 
+        f f 1 1 1 1 1 1 1 1 1 1 1 1 f f 
+        f f 1 1 1 1 1 1 1 1 1 1 1 1 f f 
+        . . 9 1 1 . 1 1 1 1 1 4 . . 1 1 
+        . . . . . . 1 1 1 d . . . . . . 
+        . . . . . . 1 1 1 d . . . . . . 
+        . . . . . . 1 1 d . . . . . . . 
+        . . . . . . 1 1 d . . . . . . . 
+        . . . . . . 1 1 d . . . . . . . 
+        . . . . . . 1 d . . . . . . . . 
+        `, img`
+        . . . . . . 4 d . . . . . . . . 
+        . . . . . . 4 4 d . . . . . . . 
+        . . . . . . 8 4 d . . . . . . . 
+        . . . . . . 8 4 4 d . . . . . . 
+        . . . . . . 8 8 e d . . . . . . 
+        . . . . . . 8 8 e e d . . . . . 
+        . . f 1 8 . 8 8 8 e d . . . 7 7 
+        5 5 8 8 8 8 8 8 8 e 7 7 5 7 5 7 
+        5 5 8 8 8 8 8 8 8 e 7 7 7 5 7 7 
+        . . f 1 8 . 8 8 8 e d . . . 7 5 
+        . . . . . . 8 8 e e d . . . . . 
+        . . . . . . 8 8 e d . . . . . . 
+        . . . . . . 8 4 4 d . . . . . . 
+        . . . . . . 8 4 d . . . . . . . 
+        . . . . . . 4 4 d . . . . . . . 
+        . . . . . . 4 d . . . . . . . . 
+        `, img`
+        . . . . . . f c . . . . . . . . 
+        . . . . . . f f c . . . . . . . 
+        . . . . . . f f c . . . . . . . 
+        . . . . . . f f f c . . . . . . 
+        . . . . . . f f f c . . . . . . 
+        . . . . . . f f f c . . . . . . 
+        . . 2 f c . f f f f c . . f f f 
+        c c f f f f f f f f f f f f c c 
+        c c f f f f f f f f f f f f c c 
+        . . 2 f c . f f f f c . . f f f 
+        . . . . . . f f f c . . . . . . 
+        . . . . . . f f f c . . . . . . 
+        . . . . . . f f f c . . . . . . 
+        . . . . . . f f c . . . . . . . 
+        . . . . . . f f c . . . . . . . 
+        . . . . . . f c . . . . . . . . 
+        `]
     land_animal = [sprites.builtin.cat1, sprites.builtin.forestBat0, sprites.builtin.forestMonkey0, sprites.builtin.forestSnake1]
 }
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function (sprite, otherSprite) {
@@ -209,6 +307,19 @@ function spawn_Car_B () {
     projectile.setKind(SpriteKind.Enemy)
     projectile.x = randint(199, 199)
 }
+function spawn_bird () {
+    if (1 == randint(1, 2)) {
+        pos_neg = 75
+        projectile = sprites.createProjectileFromSide(birds[randint(0, birds.length - 1)], pos_neg, 0)
+        projectile.setKind(SpriteKind.Enemy)
+        projectile.y = randint(0, 190)
+    } else {
+        pos_neg = -75
+        projectile = sprites.createProjectileFromSide(birds_B[randint(0, birds_B.length - 1)], pos_neg, 0)
+        projectile.setKind(SpriteKind.Enemy)
+        projectile.y = randint(0, 190)
+    }
+}
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     sprite.destroy()
     scene.cameraShake(2, 500)
@@ -249,6 +360,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 let roll = 0
 let animal_count = 0
 let still: Sprite = null
+let pos_neg = 0
 let honk8: Sprite = null
 let honk7: Sprite = null
 let honk6: Sprite = null
@@ -258,10 +370,11 @@ let honk3: Sprite = null
 let honk2: Sprite = null
 let honk1: Sprite = null
 let land_animal: Image[] = []
+let birds_B: Image[] = []
+let birds: Image[] = []
 let car_B: Image[] = []
 let car_F: Image[] = []
 let student_B: Image[] = []
-let water_animal: Image[] = []
 let student_F: Image[] = []
 let projectile: Sprite = null
 let honkscore = 0
@@ -274,18 +387,6 @@ info.setScore(0)
 info.setLife(3)
 tiles.setTilemap(tilemap`level_3`)
 scene.cameraFollowSprite(goose)
-game.onUpdateInterval(2000, function () {
-	
-})
-game.onUpdateInterval(2000, function () {
-	
-})
-game.onUpdateInterval(2000, function () {
-	
-})
-game.onUpdateInterval(2000, function () {
-	
-})
 forever(function () {
     roll = randint(0, 30)
     if (0 <= roll && 8 >= roll) {
@@ -306,8 +407,8 @@ forever(function () {
             animal_count += 1
         }
     }
-    if (28 < roll && 30 >= roll) {
-        spawn_wateranimal()
+    if (14 < roll && 30 >= roll) {
+        spawn_bird()
     }
     pause(500)
 })
