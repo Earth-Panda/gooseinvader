@@ -456,6 +456,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . 1 1 1 1 . . . . . . 
             `, goose, 0, 100)
         honkscore = 0
+        music.pewPew.play()
     } else {
         scene.cameraShake(2, 100)
     }
@@ -521,7 +522,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, ot
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.destroy(effects.ashes)
 })
 let roll = 0
 let animal_count = 0
