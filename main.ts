@@ -550,13 +550,14 @@ let student_F: Image[] = []
 let projectile: Sprite = null
 let honkscore = 0
 let goose: Sprite = null
+tiles.setTilemap(tilemap`level_3`)
 create_sprites()
+let boool = true
 goose.bottom = 120
 controller.moveSprite(goose, 85, 85)
 honkscore = 0
 info.setScore(0)
 info.setLife(3)
-tiles.setTilemap(tilemap`level_3`)
 scene.cameraFollowSprite(goose)
 let statusbar = statusbars.create(4, 50, StatusBarKind.Energy)
 statusbar.setColor(5, 15)
