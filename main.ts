@@ -523,6 +523,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, ot
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
+    info.changeScoreBy(1)
 })
 let roll = 0
 let animal_count = 0
