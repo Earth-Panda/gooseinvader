@@ -512,6 +512,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, ot
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
 })
+let sound_Played = false
 let roll = 0
 let animal_count = 0
 let still: Sprite = null
@@ -547,7 +548,7 @@ statusbar.setColor(5, 15)
 statusbar.positionDirection(CollisionDirection.Left)
 statusbar.setBarBorder(1, 13)
 statusbar.setLabel("HONK")
-let sound_Played = false
+let start = 0
 forever(function () {
     roll = randint(0, 30)
     if (0 <= roll && 8 >= roll) {
