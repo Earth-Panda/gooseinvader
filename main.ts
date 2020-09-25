@@ -38,10 +38,13 @@ function create_sprites () {
     land_animal = [sprites.builtin.cat1, sprites.builtin.forestBat0, sprites.builtin.forestMonkey0, sprites.builtin.forestSnake1]
 }
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.destroy(effects.ashes)
+    sprite.startEffect(effects.hearts, 200)
+    info.changeScoreBy(1)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (honkscore >= 10) {
+    if (honkscore >= 0) {
+        goose.startEffect(effects.smiles, 1000)
         honk1 = sprites.createProjectileFromSprite(img`
             1 1 1 1 1 . . . . . . . . . . . 
             . . 1 1 1 1 1 . . . . . . . . . 
@@ -59,7 +62,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . . . . . . . . . 1 1 
             . . . . . . . . . . . . . . . 1 
             . . . . . . . . . . . . . . . 1 
-            `, goose, 100, -100)
+            `, goose, 71, -71)
         honk2 = sprites.createProjectileFromSprite(img`
             1 . . . . . . . . . . . . . . . 
             1 . . . . . . . . . . . . . . . 
@@ -77,7 +80,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . . 1 1 1 1 1 . . . . 
             . . . . . . . . . 1 1 1 1 1 . . 
             . . . . . . . . . . . . 1 1 1 1 
-            `, goose, -100, 100)
+            `, goose, -71, 71)
         honk3 = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . . . . . . 1 
             . . . . . . . . . . . . . . . 1 
@@ -95,7 +98,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . 1 1 1 1 1 . . . . . . . 
             . . 1 1 1 1 1 . . . . . . . . . 
             1 1 1 1 1 . . . . . . . . . . . 
-            `, goose, 100, 100)
+            `, goose, 71, 71)
         honk4 = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . . 1 1 1 1 1 
             . . . . . . . . . 1 1 1 1 1 . . 
@@ -113,11 +116,11 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             1 1 . . . . . . . . . . . . . . 
             1 . . . . . . . . . . . . . . . 
             1 . . . . . . . . . . . . . . . 
-            `, goose, -100, -100)
+            `, goose, -71, -71)
         honk5 = sprites.createProjectileFromSprite(img`
-            . . . . . 1 1 1 . . . . . . . . 
-            . . . . 1 1 1 . . . . . . . . . 
+            . . . . 1 1 1 1 . . . . . . . . 
             . . . 1 1 1 . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
             . . 1 1 1 . . . . . . . . . . . 
             . 1 1 1 . . . . . . . . . . . . 
             . 1 1 . . . . . . . . . . . . . 
@@ -128,15 +131,15 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . 1 1 . . . . . . . . . . . . . 
             . 1 1 1 . . . . . . . . . . . . 
             . . 1 1 1 . . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
             . . . 1 1 1 . . . . . . . . . . 
-            . . . . 1 1 1 . . . . . . . . . 
-            . . . . . 1 1 1 . . . . . . . . 
+            . . . . 1 1 1 1 . . . . . . . . 
             `, goose, -100, 0)
         honk6 = sprites.createProjectileFromSprite(img`
-            . . . . . . . 1 1 1 . . . . . . 
-            . . . . . . . . . 1 1 1 . . . . 
-            . . . . . . . . . . 1 1 1 . . . 
-            . . . . . . . . . . . 1 1 1 . . 
+            . . . . . . . 1 1 1 1 . . . . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . . . . 1 1 1 1 . . 
+            . . . . . . . . . . . . 1 1 . . 
             . . . . . . . . . . . . 1 1 1 . 
             . . . . . . . . . . . . . 1 1 . 
             . . . . . . . . . . . . . . 1 1 
@@ -145,16 +148,16 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . . . . . . . . 1 1 1 
             . . . . . . . . . . . . . 1 1 . 
             . . . . . . . . . . . . 1 1 1 . 
-            . . . . . . . . . . . 1 1 1 . . 
-            . . . . . . . . . . 1 1 1 . . . 
-            . . . . . . . . . 1 1 1 . . . . 
-            . . . . . . . 1 1 1 . . . . . . 
+            . . . . . . . . . . . . 1 1 . . 
+            . . . . . . . . . . 1 1 1 1 . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . 1 1 1 1 . . . . . 
             `, goose, 100, 0)
         honk7 = sprites.createProjectileFromSprite(img`
             . . . . . . 1 1 1 1 . . . . . . 
-            . . . . 1 1 1 1 1 1 1 1 . . . . 
+            . . . 1 1 1 1 1 1 1 1 1 1 . . . 
             . . 1 1 1 1 . . . . 1 1 1 1 . . 
-            . . 1 1 . . . . . . . . 1 1 . . 
+            . 1 1 1 . . . . . . . . 1 1 1 . 
             . 1 1 . . . . . . . . . . 1 1 . 
             1 1 1 . . . . . . . . . . 1 1 1 
             1 1 . . . . . . . . . . . . 1 1 
@@ -183,7 +186,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . 1 1 . . . . . . . . . . 1 1 . 
             . 1 1 1 . . . . . . . . 1 1 1 . 
             . . 1 1 1 1 . . . . 1 1 1 1 . . 
-            . . . . 1 1 1 1 1 1 1 1 1 . . . 
+            . . . 1 1 1 1 1 1 1 1 1 1 . . . 
             . . . . . . 1 1 1 1 . . . . . . 
             `, goose, 0, 100)
         honkscore = 0
@@ -236,7 +239,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     animal_count += -1
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.destroy(effects.ashes)
+    sprite.startEffect(effects.hearts, 200)
+    info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -263,7 +268,7 @@ let honkscore = 0
 let goose: Sprite = null
 create_sprites()
 goose.bottom = 120
-controller.moveSprite(goose, 100, 100)
+controller.moveSprite(goose, 85, 85)
 honkscore = 0
 info.setScore(0)
 info.setLife(3)
