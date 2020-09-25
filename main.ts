@@ -524,10 +524,6 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     otherSprite.destroy()
 })
 let roll = 0
-let walk_right: animation.Animation = null
-let walk_left: animation.Animation = null
-let walk_down: animation.Animation = null
-let walk_up: animation.Animation = null
 let animal_count = 0
 let still: Sprite = null
 let pos_neg = 0
@@ -550,6 +546,7 @@ let student_F: Image[] = []
 let projectile: Sprite = null
 let honkscore = 0
 let goose: Sprite = null
+let start = 0
 create_sprites()
 goose.bottom = 120
 controller.moveSprite(goose, 85, 85)
@@ -563,7 +560,6 @@ statusbar.setColor(5, 15)
 statusbar.positionDirection(CollisionDirection.Left)
 statusbar.setBarBorder(1, 13)
 statusbar.setLabel("HONK")
-let start = 0
 game.onUpdate(function () {
     if (goose.vx > 0) {
         animation.setAction(goose, ActionKind.walk_right)
@@ -587,10 +583,65 @@ game.onUpdate(function () {
     }
 })
 forever(function () {
-    for (let start = 0; start <= 1; start++) {
-        walk_up = animation.createAnimation(ActionKind.walk_up, 100)
-        animation.attachAnimation(goose, walk_up)
-        walk_up.addAnimationFrame(img`
+    if (goose.vx < 0) {
+        goose.setImage(img`
+            . . . . . . b b d . . . . . . . 
+            . . . . . . d e e d . . . . . . 
+            . . . . . . d e e b . . . . . . 
+            . . . . . . b e e e d . . . . . 
+            . . . . . . b e e d . . . . . . 
+            . . . . . . d e e d . . . . . . 
+            . . 2 f 1 . d e e e b . . 1 1 . 
+            f f f f f f e e e e e d e e e . 
+            f f f f f f e e e e e d e e e . 
+            . . 2 f 1 . d e e e . . . b d . 
+            . . . . . . b e e b . . . . . . 
+            . . . . . . b e e d . . . . . . 
+            . . . . . . d e e e d . . . . . 
+            . . . . . . d e e d . . . . . . 
+            . . . . . . b e e d . . . . . . 
+            . . . . . . d b b . . . . . . . 
+            `)
+    } else if (goose.vx > 0) {
+        goose.setImage(img`
+            . . . . . . . d b b . . . . . . 
+            . . . . . . d e e d . . . . . . 
+            . . . . . . d e e d . . . . . . 
+            . . . . . b e e e b . . . . . . 
+            . . . . . . d e e b . . . . . . 
+            . . . . . . d e e d . . . . . . 
+            . d b . . d e e e d . 1 f 2 . . 
+            . e e e b e e e e e f f f f f f 
+            . e e e d e e e e e f f f f f f 
+            . 1 1 . . d e e e b . 1 f 2 . . 
+            . . . . . . b e e b . . . . . . 
+            . . . . . . d e e d . . . . . . 
+            . . . . . d e e e d . . . . . . 
+            . . . . . . b e e b . . . . . . 
+            . . . . . . d e e b . . . . . . 
+            . . . . . . . b d d . . . . . . 
+            `)
+    } else if (goose.vy > 0) {
+        goose.setImage(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . 1 e e b . . . . . . 
+            . . . . . . 1 e e d . . . . . . 
+            . . . . . . . e e . . . . . . . 
+            . . . . . . . b d . . . . . . . 
+            . . . b . . d e e d . . d . . . 
+            . d d e d b e e e e b d e b d . 
+            b e e e e e e e e e e e e e e d 
+            b e e e e e e e e e e e e e e b 
+            d d b b d d b e e d b b d d b b 
+            . . . . . . . f f . . . . . . . 
+            . . . . . . 1 f f 1 . . . . . . 
+            . . . . . . f f f f . . . . . . 
+            . . . . . . 2 f f 2 . . . . . . 
+            . . . . . . . f f . . . . . . . 
+            . . . . . . . f f . . . . . . . 
+            `)
+    } else {
+        goose.setImage(img`
             . . . . . . . f f . . . . . . . 
             . . . . . . . f f . . . . . . . 
             . . . . . . 2 f f 2 . . . . . . 
@@ -608,67 +659,6 @@ forever(function () {
             . . . . . . 1 e e d . . . . . . 
             . . . . . . . . . . . . . . . . 
             `)
-        walk_down = animation.createAnimation(ActionKind.walk_down, 100)
-        animation.attachAnimation(goose, walk_down)
-        walk_down.addAnimationFrame(img`
-            . . . . . . . f f . . . . . . . 
-            . . . . . . . f f . . . . . . . 
-            . . . . . . 2 f f 2 . . . . . . 
-            . . . . . . f f f f . . . . . . 
-            . . . . . . 1 f f 1 . . . . . . 
-            . . . . . . . f f . . . . . . . 
-            b b d b b d 1 e e 1 d b d d b d 
-            d e e e e e e e e e e e e e e d 
-            b e e e e e e e e e e e e e e d 
-            . b e d b e e e e e e d d e b . 
-            . . d . . b b e e d d . . d . . 
-            . . . . . . . e e . . . . . . . 
-            . . . . . . . d d . . . . . . . 
-            . . . . . . 1 e e b . . . . . . 
-            . . . . . . 1 e e d . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `)
-        walk_left = animation.createAnimation(ActionKind.walk_left, 100)
-        animation.attachAnimation(goose, walk_left)
-        walk_left.addAnimationFrame(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `)
-        walk_right = animation.createAnimation(ActionKind.walk_right, 100)
-        animation.attachAnimation(goose, walk_right)
-        walk_right.addAnimationFrame(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `)
-        start = 1
     }
 })
 forever(function () {
