@@ -297,6 +297,158 @@ function spawn_Car_F () {
     projectile.setKind(SpriteKind.Enemy)
     projectile.x = randint(55, 55)
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (honkscore >= 10) {
+        goose.startEffect(effects.smiles, 1000)
+        honk1 = sprites.createProjectileFromSprite(img`
+            1 1 1 1 1 . . . . . . . . . . . 
+            . . 1 1 1 1 1 . . . . . . . . . 
+            . . . . 1 1 1 1 1 . . . . . . . 
+            . . . . . . 1 1 1 1 1 . . . . . 
+            . . . . . . . . 1 1 1 1 . . . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . . . . 1 1 1 . . . 
+            . . . . . . . . . . . 1 1 1 . . 
+            . . . . . . . . . . . . 1 1 . . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . . 1 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . . 1 
+            `, goose, 71, -71)
+        honk2 = sprites.createProjectileFromSprite(img`
+            1 . . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . . 1 1 . . . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . . 1 1 . . . . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . . . 1 1 1 1 . . . . . . . . 
+            . . . . . 1 1 1 1 1 . . . . . . 
+            . . . . . . . 1 1 1 1 1 . . . . 
+            . . . . . . . . . 1 1 1 1 1 . . 
+            . . . . . . . . . . . . 1 1 1 1 
+            `, goose, -71, 71)
+        honk3 = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . 1 1 1 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . . 1 1 . . 
+            . . . . . . . . . . . 1 1 1 . . 
+            . . . . . . . . . . 1 1 1 . . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . . 1 1 1 1 . . . . 
+            . . . . . . 1 1 1 1 1 . . . . . 
+            . . . . 1 1 1 1 1 . . . . . . . 
+            . . 1 1 1 1 1 . . . . . . . . . 
+            1 1 1 1 1 . . . . . . . . . . . 
+            `, goose, 71, 71)
+        honk4 = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . 1 1 1 1 1 
+            . . . . . . . . . 1 1 1 1 1 . . 
+            . . . . . . . 1 1 1 1 1 . . . . 
+            . . . . . 1 1 1 1 1 . . . . . . 
+            . . . . 1 1 1 1 . . . . . . . . 
+            . . . 1 1 1 1 . . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . 1 1 . . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . . 
+            `, goose, -71, -71)
+        honk5 = sprites.createProjectileFromSprite(img`
+            . . . . 1 1 1 1 . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 . . . . . . . . . . . . . . 
+            1 1 1 . . . . . . . . . . . . . 
+            . 1 1 . . . . . . . . . . . . . 
+            . 1 1 1 . . . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . 1 1 1 . . . . . . . . . . . 
+            . . . 1 1 1 . . . . . . . . . . 
+            . . . . 1 1 1 1 . . . . . . . . 
+            `, goose, -100, 0)
+        honk6 = sprites.createProjectileFromSprite(img`
+            . . . . . . . 1 1 1 1 . . . . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . . . . 1 1 1 1 . . 
+            . . . . . . . . . . . . 1 1 . . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . . 1 1 
+            . . . . . . . . . . . . . 1 1 1 
+            . . . . . . . . . . . . . 1 1 . 
+            . . . . . . . . . . . . 1 1 1 . 
+            . . . . . . . . . . . . 1 1 . . 
+            . . . . . . . . . . 1 1 1 1 . . 
+            . . . . . . . . . 1 1 1 1 . . . 
+            . . . . . . . 1 1 1 1 . . . . . 
+            `, goose, 100, 0)
+        honk7 = sprites.createProjectileFromSprite(img`
+            . . . . . . 1 1 1 1 . . . . . . 
+            . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+            . . 1 1 1 1 . . . . 1 1 1 1 . . 
+            . 1 1 1 . . . . . . . . 1 1 1 . 
+            . 1 1 . . . . . . . . . . 1 1 . 
+            1 1 1 . . . . . . . . . . 1 1 1 
+            1 1 . . . . . . . . . . . . 1 1 
+            1 . . . . . . . . . . . . . . 1 
+            1 . . . . . . . . . . . . . . 1 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, goose, 0, -100)
+        honk8 = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            1 . . . . . . . . . . . . . . 1 
+            1 . . . . . . . . . . . . . . 1 
+            1 1 . . . . . . . . . . . . 1 1 
+            . 1 1 . . . . . . . . . . 1 1 . 
+            . 1 1 1 . . . . . . . . 1 1 1 . 
+            . . 1 1 1 1 . . . . 1 1 1 1 . . 
+            . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+            . . . . . . 1 1 1 1 . . . . . . 
+            `, goose, 0, 100)
+        honkscore = 0
+    } else {
+        scene.cameraShake(2, 100)
+    }
+})
 function spawn_humman_B () {
     projectile = sprites.createProjectileFromSide(student_B[randint(0, student_B.length - 1)], 0, -30)
     projectile.setKind(SpriteKind.humman)
@@ -329,6 +481,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     } else {
         goose.startEffect(effects.fire, 500)
     }
+    music.wawawawaa.play()
 })
 function spawn_landanimal () {
     still = sprites.create(land_animal[randint(0, land_animal.length - 1)], SpriteKind.humman)
@@ -341,6 +494,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherS
     sprite.startEffect(effects.hearts, 200)
     info.changeScoreBy(2)
     honkscore += 1
+    music.baDing.play()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
@@ -348,6 +502,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     info.changeScoreBy(1)
     honkscore += 1
     animal_count += -1
+    music.baDing.play()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
@@ -387,6 +542,17 @@ info.setScore(0)
 info.setLife(3)
 tiles.setTilemap(tilemap`level_3`)
 scene.cameraFollowSprite(goose)
+let statusbar = statusbars.create(4, 50, StatusBarKind.Energy)
+statusbar.setColor(5, 15)
+statusbar.positionDirection(CollisionDirection.Left)
+statusbar.setBarBorder(1, 13)
+statusbar.setLabel("HONK")
+forever(function () {
+    statusbar.value = 10 * honkscore
+    if (honkscore) {
+        music.powerUp.play()
+    }
+})
 forever(function () {
     roll = randint(0, 30)
     if (0 <= roll && 8 >= roll) {
