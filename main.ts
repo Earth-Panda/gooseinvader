@@ -395,10 +395,10 @@ forever(function () {
     if (8 < roll && 16 >= roll) {
         spawn_Car_B()
     }
-    if (16 < roll && 19 >= roll) {
+    if (16 < roll && 18 >= roll) {
         spawn_human_F()
     }
-    if (19 > roll && 22 >= roll) {
+    if (18 < roll && 20 >= roll) {
         spawn_humman_B()
     }
     if (animal_count < 5) {
