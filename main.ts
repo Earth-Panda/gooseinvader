@@ -7,10 +7,9 @@ function spawn_human_F () {
     projectile.x = randint(24, 40)
 }
 function spawn_wateranimal () {
-    projectile2 = sprites.create(water_animal[randint(0, water_animal.length - 1)], SpriteKind.humman)
-    projectile2.setKind(SpriteKind.Food)
-    projectile2.x = randint(56, 198)
-    projectile2.setVelocity(0, -75)
+    projectile = sprites.createProjectileFromSide(water_animal[randint(0, water_animal.length - 1)], 0, -75)
+    projectile.setKind(SpriteKind.Food)
+    projectile.x = randint(140, 140)
 }
 function create_sprites () {
     student_F = [sprites.castle.heroWalkFront1, sprites.builtin.villager1WalkFront1, sprites.builtin.villager2WalkFront1, sprites.builtin.villager3WalkFront1, sprites.builtin.villager4WalkFront1]
@@ -53,7 +52,7 @@ function spawn_landanimal () {
     still = sprites.create(land_animal[randint(0, land_animal.length - 1)], SpriteKind.humman)
     still.setKind(SpriteKind.Food)
     still.x = randint(56, 198)
-    still.y = randint(0, 300)
+    still.y = randint(56, 199)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
@@ -74,7 +73,6 @@ let car_B: Image[] = []
 let car_F: Image[] = []
 let student_B: Image[] = []
 let water_animal: Image[] = []
-let projectile2: Sprite = null
 let student_F: Image[] = []
 let projectile: Sprite = null
 let goose: Sprite = null
@@ -111,14 +109,14 @@ forever(function () {
     if (19 > roll && 22 >= roll) {
         spawn_humman_B()
     }
-    if (animal_count <= 15) {
-        if (22 < roll && 26 >= roll) {
+    if (animal_count < 5) {
+        if (22 < roll && 28 >= roll) {
             spawn_landanimal()
+            animal_count += 1
         }
-        if (26 < roll && 30 >= roll) {
-            spawn_wateranimal()
-        }
-        animal_count += 1
+    }
+    if (28 < roll && 30 >= roll) {
+        spawn_wateranimal()
     }
     pause(500)
 })
