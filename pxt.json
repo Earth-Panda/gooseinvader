@@ -2,7 +2,8 @@
     "name": "Attack_of_Mr.Goose",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "animation": "*"
     },
     "files": [
         "main.blocks",

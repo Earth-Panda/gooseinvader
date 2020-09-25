@@ -16,7 +16,24 @@ function create_sprites () {
     student_B = [sprites.castle.heroWalkBack1, sprites.builtin.villager1WalkBack1, sprites.builtin.villager2WalkBack1, sprites.builtin.villager3WalkBack1, sprites.builtin.villager4WalkBack1]
     car_F = [sprites.vehicle.carRedFront, sprites.vehicle.carBlueFront, sprites.vehicle.carPinkFront]
     car_B = [sprites.vehicle.carRedBack, sprites.vehicle.carBlueBack, sprites.vehicle.carPinkBack]
-    goose = sprites.create(sprites.duck.duck6, SpriteKind.Player)
+    goose = sprites.create(img`
+        . . . . . . . f f . . . . . . . 
+        . . . . . . . f f . . . . . . . 
+        . . . . . . 2 f f 2 . . . . . . 
+        . . . . . . f f f f . . . . . . 
+        . . . . . . 1 f f 1 . . . . . . 
+        . . . . . . . f f . . . . . . . 
+        b b d b b d 1 e e 1 d b d d b d 
+        d e e e e e e e e e e e e e e d 
+        b e e e e e e e e e e e e e e d 
+        . b e d b e e e e e e d d e b . 
+        . . d . . b b e e d d . . d . . 
+        . . . . . . . e e . . . . . . . 
+        . . . . . . . d d . . . . . . . 
+        . . . . . . 1 e e b . . . . . . 
+        . . . . . . 1 e e d . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
     water_animal = [sprites.builtin.angelFish1, sprites.builtin.clownFish2, sprites.builtin.hermitCrabAwaken5, sprites.builtin.shark1]
     land_animal = [sprites.builtin.cat1, sprites.builtin.forestBat0, sprites.builtin.forestMonkey0, sprites.builtin.forestSnake1]
 }
