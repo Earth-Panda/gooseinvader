@@ -219,8 +219,8 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
 function spawn_landanimal () {
     still = sprites.create(land_animal[randint(0, land_animal.length - 1)], SpriteKind.humman)
     still.setKind(SpriteKind.Food)
-    still.x = randint(56, 198)
-    still.y = randint(56, 199)
+    still.x = randint(66, 180)
+    still.y = randint(66, 199)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
@@ -295,8 +295,8 @@ forever(function () {
     if (19 > roll && 22 >= roll) {
         spawn_humman_B()
     }
-    if (animal_count < 5) {
-        if (22 < roll && 28 >= roll) {
+    if (22 < roll && 28 >= roll) {
+        if (animal_count < 5) {
             spawn_landanimal()
             animal_count += 1
         }
