@@ -43,7 +43,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Food, function (sprite, othe
     info.changeScoreBy(1)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (honkscore >= 0) {
+    if (honkscore >= 10) {
         goose.startEffect(effects.smiles, 1000)
         honk1 = sprites.createProjectileFromSprite(img`
             1 1 1 1 1 . . . . . . . . . . . 
@@ -222,8 +222,8 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
 function spawn_landanimal () {
     still = sprites.create(land_animal[randint(0, land_animal.length - 1)], SpriteKind.humman)
     still.setKind(SpriteKind.Food)
-    still.x = randint(66, 180)
-    still.y = randint(66, 199)
+    still.x = randint(56, 198)
+    still.y = randint(56, 199)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
@@ -300,8 +300,8 @@ forever(function () {
     if (19 > roll && 22 >= roll) {
         spawn_humman_B()
     }
-    if (22 < roll && 28 >= roll) {
-        if (animal_count < 5) {
+    if (animal_count < 5) {
+        if (22 < roll && 28 >= roll) {
             spawn_landanimal()
             animal_count += 1
         }
