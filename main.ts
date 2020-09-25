@@ -288,6 +288,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . 1 1 1 1 . . . . . . 
             `, goose, 0, 100)
         honkscore = 0
+        sound_Played = false
     } else {
         scene.cameraShake(2, 100)
     }
@@ -445,6 +446,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . 1 1 1 1 . . . . . . 
             `, goose, 0, 100)
         honkscore = 0
+        music.pewPew.play()
     } else {
         scene.cameraShake(2, 100)
     }
@@ -481,7 +483,9 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     } else {
         goose.startEffect(effects.fire, 500)
     }
-    music.playMelody("D C - - - - - - ", 120)
+    if (info.life() != 0) {
+        music.playMelody("D C - - - - - - ", 120)
+    }
 })
 function spawn_landanimal () {
     still = sprites.create(land_animal[randint(0, land_animal.length - 1)], SpriteKind.humman)
@@ -494,7 +498,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherS
     sprite.startEffect(effects.hearts, 200)
     info.changeScoreBy(2)
     honkscore += 1
-    music.baDing.play()
+    music.magicWand.play()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
@@ -532,6 +536,7 @@ let car_F: Image[] = []
 let student_B: Image[] = []
 let student_F: Image[] = []
 let projectile: Sprite = null
+let sound_Played = false
 let honkscore = 0
 let goose: Sprite = null
 create_sprites()
@@ -547,7 +552,7 @@ statusbar.setColor(5, 15)
 statusbar.positionDirection(CollisionDirection.Left)
 statusbar.setBarBorder(1, 13)
 statusbar.setLabel("HONK")
-let sound_Played = false
+sound_Played = false
 forever(function () {
     roll = randint(0, 30)
     if (0 <= roll && 8 >= roll) {
@@ -576,7 +581,7 @@ forever(function () {
 forever(function () {
     if (sound_Played == false && 10 <= honkscore) {
         music.powerUp.play()
+        sound_Played = true
     }
     statusbar.value = 10 * honkscore
-    sound_Played = true
 })
