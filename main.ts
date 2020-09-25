@@ -548,12 +548,6 @@ statusbar.positionDirection(CollisionDirection.Left)
 statusbar.setBarBorder(1, 13)
 statusbar.setLabel("HONK")
 forever(function () {
-    statusbar.value = 10 * honkscore
-    if (honkscore) {
-        music.powerUp.play()
-    }
-})
-forever(function () {
     roll = randint(0, 30)
     if (0 <= roll && 8 >= roll) {
         spawn_Car_F()
@@ -577,4 +571,7 @@ forever(function () {
         spawn_bird()
     }
     pause(500)
+})
+forever(function () {
+    statusbar.value = 10 * honkscore
 })
