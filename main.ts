@@ -481,7 +481,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     } else {
         goose.startEffect(effects.fire, 500)
     }
-    music.wawawawaa.play()
+    music.playMelody("D C - - - - - - ", 120)
 })
 function spawn_landanimal () {
     still = sprites.create(land_animal[randint(0, land_animal.length - 1)], SpriteKind.humman)
@@ -547,6 +547,7 @@ statusbar.setColor(5, 15)
 statusbar.positionDirection(CollisionDirection.Left)
 statusbar.setBarBorder(1, 13)
 statusbar.setLabel("HONK")
+let sound_Played = false
 forever(function () {
     roll = randint(0, 30)
     if (0 <= roll && 8 >= roll) {
@@ -573,5 +574,9 @@ forever(function () {
     pause(500)
 })
 forever(function () {
+    if (sound_Played == false && 10 <= honkscore) {
+        music.powerUp.play()
+    }
     statusbar.value = 10 * honkscore
+    sound_Played = true
 })
