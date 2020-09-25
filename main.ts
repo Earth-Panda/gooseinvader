@@ -297,6 +297,8 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . 1 1 1 1 . . . . . . 
             `, goose, 0, 100)
         honkscore = 0
+        music.pewPew.play()
+        sound_Played = false
     } else {
         scene.cameraShake(2, 100)
     }
@@ -503,7 +505,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.humman, function (sprite, otherS
     sprite.startEffect(effects.hearts, 200)
     info.changeScoreBy(2)
     honkscore += 1
-    music.baDing.play()
+    music.magicWand.play()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes)
@@ -521,7 +523,6 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.humman, function (sprite, ot
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
 })
-let sound_Played = false
 let roll = 0
 let walk_right: animation.Animation = null
 let walk_left: animation.Animation = null
@@ -530,6 +531,7 @@ let walk_up: animation.Animation = null
 let animal_count = 0
 let still: Sprite = null
 let pos_neg = 0
+let sound_Played = false
 let honk8: Sprite = null
 let honk7: Sprite = null
 let honk6: Sprite = null
@@ -697,7 +699,7 @@ forever(function () {
 forever(function () {
     if (sound_Played == false && 10 <= honkscore) {
         music.powerUp.play()
+        sound_Played = true
     }
     statusbar.value = 10 * honkscore
-    sound_Played = true
 })
